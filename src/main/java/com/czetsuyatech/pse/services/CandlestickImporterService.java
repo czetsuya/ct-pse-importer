@@ -2,8 +2,6 @@ package com.czetsuyatech.pse.services;
 
 import com.czetsuyatech.pse.persistence.entities.CandlestickEntity;
 import com.czetsuyatech.pse.persistence.repositories.CandlestickRepository;
-import io.quarkus.runtime.Startup;
-import io.quarkus.runtime.StartupEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,19 +11,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.stream.Stream;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
+import javax.inject.Inject;
 import javax.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-@Startup
 @ApplicationScoped
 @Slf4j
-@RequiredArgsConstructor
 public class CandlestickImporterService {
 
-  final CandlestickRepository candlestickRepository;
+  @Inject
+  CandlestickRepository candlestickRepository;
 
   @ConfigProperty(name = "folder.source")
   String srcFolder;
@@ -34,7 +30,7 @@ public class CandlestickImporterService {
   String srcProcessed;
 
   @Transactional
-  void startup(@Observes StartupEvent event) throws IOException {
+  public void startImport() throws IOException {
 
     log.info("Import starts");
 
@@ -71,6 +67,7 @@ public class CandlestickImporterService {
         .build();
 
     candlestickRepository.persist(entity);
+    candlestickRepository.flush();
   }
 
   private LocalDate getDate(String d) {
