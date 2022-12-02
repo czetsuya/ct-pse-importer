@@ -10,7 +10,7 @@ import javax.inject.Inject;
 public class Application implements QuarkusApplication {
 
   @Inject
-  private CandlestickImporterService candlestickImporterService;
+  CandlestickImporterService candlestickImporterService;
 
   @Override
   public int run(String... args) throws Exception {

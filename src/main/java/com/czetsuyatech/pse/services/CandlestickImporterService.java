@@ -67,7 +67,6 @@ public class CandlestickImporterService {
         .build();
 
     candlestickRepository.persist(entity);
-    candlestickRepository.flush();
   }
 
   private LocalDate getDate(String d) {
@@ -82,8 +81,14 @@ public class CandlestickImporterService {
         return LocalDate.parse(d, df);
 
       } catch (Exception e2) {
-        df = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-        return LocalDate.parse(d, df);
+        try {
+          df = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+          return LocalDate.parse(d, df);
+
+        } catch(Exception e3) {
+          df = DateTimeFormatter.ofPattern("MM/d/yyyy");
+          return LocalDate.parse(d, df);
+        }
       }
     }
   }

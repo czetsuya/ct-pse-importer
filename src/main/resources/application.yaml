@@ -17,5 +17,5 @@ quarkus:
     baseline-on-migrate: true
     locations: db/migrations
 folder:
-  source: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes"
-  processed: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes\\processed"
+  source: "/Users/czetsuya/Downloads/StockQuotes"
+  processed: "/Users/czetsuya/Downloads/StockQuotes/processed"
