@@ -1,0 +1,21 @@
+quarkus:
+  application:
+    name: ct-pse-importer
+  datasource:
+    db-kind: mysql
+    username: db_user
+    password: db_pass_123
+    jdbc:
+      url: jdbc:mysql://localhost:33066/pse_db
+  log:
+    level: INFO
+    category:
+      "com.czetsuyatech":
+        level: DEBUG
+  flyway:
+    migrate-at-start: true
+    baseline-on-migrate: true
+    locations: db/migrations
+folder:
+  source: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes"
+  processed: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes\\processed"

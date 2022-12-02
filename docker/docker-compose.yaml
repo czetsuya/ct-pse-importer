@@ -1,0 +1,19 @@
+version: "3.9"
+
+networks:
+  backend:
+
+services:
+  database-pse:
+    image: mysql:8.0.31
+    container_name: db-pse
+    ports:
+      - 33066:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pse_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_pass_123
+    command: mysqld --sql_mode="NO_ENGINE_SUBSTITUTION"
+    networks:
+      - backend
