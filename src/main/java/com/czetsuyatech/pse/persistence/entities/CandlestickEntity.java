@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 
 @Data
 @NoArgsConstructor
-@Table(uniqueConstraints = @UniqueConstraint(name = "uk_candlestick", columnNames = {"ticker"}))
+@Table(uniqueConstraints = @UniqueConstraint(name = "uk_candlestick", columnNames = {"ticker", "created_at"}))
 @Entity(name = "candlestick")
 @SuperBuilder
 public class CandlestickEntity {
