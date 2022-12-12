@@ -18,4 +18,4 @@ quarkus:
     locations: db/migrations
 folder:
   source: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes"
-  processed: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes\\processed"
+  processed: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes\\Processed"

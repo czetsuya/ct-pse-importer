@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -66,6 +67,12 @@ public class CandlestickImporterService {
           .parallel()
           .forEach(this::processLine);
       filesProcessed++;
+
+      String targetPath = srcProcessed + "/" + p.getFileName();
+
+      Files.move(p, Path.of(targetPath), StandardCopyOption.REPLACE_EXISTING);
+
+      // move path to a new folder
 
     } catch (Exception e) {
       log.error("Failed parsing file={} with error={}", p.getFileName(), e.getMessage());
