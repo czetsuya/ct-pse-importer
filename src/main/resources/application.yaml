@@ -6,7 +6,7 @@ quarkus:
     username: db_user
     password: db_pass_123
     jdbc:
-      url: jdbc:mysql://localhost:33066/pse_db
+      url: jdbc:mysql://localhost:33061/pse_db
   log:
     level: INFO
     category:
