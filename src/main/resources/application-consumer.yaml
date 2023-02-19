@@ -8,25 +8,28 @@ quarkus:
     jdbc:
       url: jdbc:mysql://localhost:33061/pse_db
   log:
-    level: INFO
+    level: info
     category:
       "com.czetsuyatech":
         level: DEBUG
+      "org.apache.http":
+        level: debug
   flyway:
     migrate-at-start: true
     baseline-on-migrate: true
     locations: db/migrations
-  http:
-    port: 8081
   rest-client:
-    logging:
-      body-limit:
+    autoTrader-api:
+      url: http://localhost:8080
+      scope: javax.inject.Singleton
+      verify-host: false
 
 at:
-  run-mode: import
+  run-mode: consumer
   crypto-pairs: ACEN,AGI,ALI,ALLDY,ALLHC,AP,AXLM,BLOOM,BPI,CNPF,CNVRG,DD,DITO,DMC,EMP,FGEN,FILRT,FLI,FNI,HOME,ICT,JFC,JGC,LTG,MAXS,MBT,MEG,MM,MONDE,MPI,MWIDE,PCOR,PGOLD,RLC,RRHI,SMPH,SPNEC,VLL
   max-candles: 14
 
 folder:
   source: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes"
   processed: "E:\\Dropbox\\Stock Trading\\Amibroker\\PSE Stock Quotes\\Processed"
+

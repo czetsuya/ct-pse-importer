@@ -1,23 +1,26 @@
 package com.czetsuyatech.pse;
 
-import com.czetsuyatech.pse.services.CandlestickImporterService;
+import com.czetsuyatech.pse.config.AppConfig;
+import com.czetsuyatech.pse.runners.RunnerStrategyProvider;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
-import javax.inject.Inject;
+import lombok.RequiredArgsConstructor;
 
 @QuarkusMain
+@RequiredArgsConstructor
 public class Application implements QuarkusApplication {
 
-  @Inject
-  CandlestickImporterService candlestickImporterService;
+  final RunnerStrategyProvider runnerStrategyProvider;
+  final AppConfig appConfig;
 
   @Override
-  public int run(String... args) throws Exception {
+  public int run(String... args) {
 
-    candlestickImporterService.startImport();
+    runnerStrategyProvider.run(appConfig.runMode());
 
     Quarkus.waitForExit();
+
     return 0;
   }
 
