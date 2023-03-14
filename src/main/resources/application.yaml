@@ -19,8 +19,10 @@ quarkus:
   http:
     port: 8081
   rest-client:
-    logging:
-      body-limit:
+    autoTrader-api:
+      url: http://localhost:8080
+      scope: javax.inject.Singleton
+      verify-host: false
 
 at:
   run-mode: import
